@@ -2,3 +2,23 @@ jQuery-Ajax-Queue is a simple plugin that allows you to queue either
 the ajax calls in the order that you pass them to the queue or queue
 the callbacks so that the callbacks are executed in the order the
 ajax requests were passed.
+
+Basic Use:
+Works just like $.ajax() in jQuery http://api.jquery.com/jQuery.ajax/
+except that you use $.ajaxQueue()
+
+You can pass 3 parameters.
+The first parameter is required.  It will be a JSON object formatted with all
+the usual jQuery options.
+
+The second is optional (unless you want to change the mode) and defines a 
+queue name.  It will default to 'ajax' as the queue name.  This is so you 
+can have multiple queues.
+
+The third is optional.  If it is set to the string 'sync' then each request 
+will be sent to the server in the order they are called.  Each request will
+sent after the previous ajax call completes.  It is like you made a sychronous
+request to the server except that your javascript will keep executing from the
+point where $.ajaxQueue was called.  If this param is set to 'async', it will 
+send all the requests to the server as soon as $.ajaxQueue is called but the
+callbacks will all execute in the order that the calls were made.
