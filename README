@@ -1,0 +1,4 @@
+jQuery-Ajax-Queue is a simple plugin that allows you to queue either 
+the ajax calls in the order that you pass them to the queue or queue
+the callbacks so that the callbacks are executed in the order the
+ajax requests were passed.
