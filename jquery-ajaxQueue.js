@@ -46,11 +46,16 @@
 		if(queueMode == 'sync')
 		{
 			//add the completion callback to the ajax so we run the next when done.
-			ajaxOptions.complete = function(){
-				ajaxQueueCount[queueName]--;
-				$('#alx_connection').trigger('ajaxdown');
-				$document.dequeue( queueName );
-			};
+		        var original_complete = ajaxOptions.complete;
+		        ajaxOptions.complete = function(){
+		            ajaxQueueCount[queueName]--;
+		            $('#alx_connection').trigger('ajaxdown');
+		            $document.dequeue( queueName );
+		
+		            if (original_complete) {
+		                original_complete();    
+		            };
+		        };
 			//add the new item to the queue
 			ajaxQueueCount[queueName]++;
 			$('#alx_connection').trigger('ajaxup');
